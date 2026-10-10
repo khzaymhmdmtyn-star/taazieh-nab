@@ -78,6 +78,9 @@
             border: 2px solid #333;
             transition: 0.3s;
         }
+.gallery img {
+    cursor: pointer;
+}
 
         .gallery img:hover {
             transform: scale(1.03);
@@ -106,6 +109,7 @@
     </style>
 
 </head>
+
 
 <body>
 
@@ -149,6 +153,18 @@
             <img src="gallery6.jpg" alt="تعزیه ناب ۶">
 
             <img src="gallery7.jpg" alt="تعزیه ناب ۷">
+<img src="gallery8.jpg" alt="تعزیه ناب ۸">
+<img src="gallery9.jpg" alt="تعزیه ناب ۹">
+<img src="gallery10.jpg" alt="تعزیه ناب ۱۰">
+<img src="gallery11.jpg" alt="تعزیه ناب ۱۱">
+<img src="gallery12.jpg" alt="تعزیه ناب ۱۲">
+<img src="gallery13.jpg" alt="تعزیه ناب ۱۳">
+<img src="gallery14.jpg" alt="تعزیه ناب ۱۴">
+<img src="gallery15.jpg" alt="تعزیه ناب ۱۵">
+<img src="gallery16.jpg" alt="تعزیه ناب ۱۶">
+<img src="gallery17.jpg" alt="تعزیه ناب ۱۷">
+<img src="gallery18.jpg" alt="تعزیه ناب ۱۸">
+<img src="gallery19.jpg" alt="تعزیه ناب ۱۹">
 
         </div>
 
@@ -159,6 +175,10 @@
     </section>
 
 
+    <div id="imageModal" style="display:none; position:fixed; z-index:9999; inset:0; background:rgba(0,0,0,0.92); align-items:center; justify-content:center; padding:30px;">
+        <span id="closeModal" style="position:absolute; top:20px; right:30px; font-size:45px; color:white; cursor:pointer;">&times;</span>
+        <img id="modalImage" src="" alt="تصویر بزرگ تعزیه" style="max-width:90%; max-height:85vh; object-fit:contain; border:2px solid #d4af37; border-radius:12px;">
+    </div>
     <footer>
 
         © ۱۴۰۵ تعزیه ناب
@@ -167,4 +187,36 @@
 
 </body>
 
+<script>
+    const galleryImages = document.querySelectorAll('.gallery img');
+    const imageModal = document.getElementById('imageModal');
+    const modalImage = document.getElementById('modalImage');
+    const closeModal = document.getElementById('closeModal');
+
+    galleryImages.forEach(function(image) {
+        image.addEventListener('click', function() {
+            modalImage.src = image.src;
+            imageModal.style.display = 'flex';
+        });
+    });
+
+    closeModal.addEventListener('click', function() {
+        imageModal.style.display = 'none';
+        modalImage.src = '';
+    });
+
+    imageModal.addEventListener('click', function(event) {
+        if (event.target === imageModal) {
+            imageModal.style.display = 'none';
+            modalImage.src = '';
+        }
+    });
+
+    document.addEventListener('keydown', function(event) {
+        if (event.key === 'Escape') {
+            imageModal.style.display = 'none';
+            modalImage.src = '';
+        }
+    });
+</script>
 </html>
